@@ -2,7 +2,7 @@
 
 A simple Python-based tool that allows users to search their Gmail inbox and download attachments from matching emails.
 
-The application uses the Gmail API through **EZGmail** and authenticates users securely using **Google OAuth 2.0**.
+The application uses the Gmail API through **EZGmail** and authenticates users using **Google OAuth 2.0**.
 
 ---
 
@@ -10,7 +10,7 @@ The application uses the Gmail API through **EZGmail** and authenticates users s
 
 - 🔍 Search Gmail using Gmail search queries
 - 📎 Automatically finds emails containing attachments
-- 📋 Displays the subject of matching emails
+- 📋 Displays the subjects of matching emails
 - ⬇️ Downloads attachments from matching emails
 - 🔐 Google OAuth 2.0 authentication
 - 💻 Simple command-line interface
@@ -32,255 +32,312 @@ The application uses the Gmail API through **EZGmail** and authenticates users s
 
 ## 📂 Project Structure
 
-```text
-Attachment-Downloader/
-│
-├── .gitignore
-├── README.md
-│
-└── Attachment_Downloader/
-    └── attachment.py
-Authentication Files
+    Attachment-Downloader/
+    │
+    ├── .gitignore
+    ├── README.md
+    │
+    └── Attachment_Downloader/
+        └── attachment.py
 
-The following files are created locally but are not uploaded to GitHub:
+### Authentication Files
 
-credentials.json
-token.json
+The following files are created locally but are **not uploaded to GitHub**:
 
-These files contain authentication-related information and are protected using .gitignore.
+    credentials.json
+    token.json
 
-⚙️ Requirements
+These files contain authentication-related information and are protected using `.gitignore`.
+
+---
+
+## ⚙️ Requirements
 
 Before running this project, make sure you have:
 
-Python 3.10 or later
-A Google account
-Gmail API enabled
-A Google Cloud project
-Google OAuth 2.0 Desktop credentials
-Internet connection
-📦 Installation
-1. Clone the Repository
-git clone https://github.com/RaavanHrishi07/Attachment-Downloader.git
+- Python 3.10 or later
+- A Google account
+- Gmail API enabled
+- A Google Cloud project
+- Google OAuth 2.0 Desktop credentials
+- Internet connection
+
+---
+
+## 📦 Installation
+
+### 1. Clone the Repository
+
+    git clone https://github.com/RaavanHrishi07/Attachment-Downloader.git
 
 Navigate into the project:
 
-cd Attachment-Downloader
-2. Create a Virtual Environment
+    cd Attachment-Downloader
+
+---
+
+### 2. Create a Virtual Environment
 
 On Windows:
 
-python -m venv venv
+    python -m venv venv
 
 Activate the virtual environment:
 
-.\venv\Scripts\activate
-3. Install EZGmail
+    .\venv\Scripts\activate
 
-Install the required Python package:
+---
 
-pip install ezgmail
-🔐 Google Cloud & Gmail API Setup
+### 3. Install EZGmail
+
+    pip install ezgmail
+
+---
+
+## 🔐 Google Cloud & Gmail API Setup
 
 This project requires access to the Gmail API.
 
-Step 1 — Create a Google Cloud Project
+### Step 1 — Create a Google Cloud Project
 
 Create a new project using Google Cloud Console.
 
-Step 2 — Enable Gmail API
+### Step 2 — Enable Gmail API
 
-Enable the Gmail API for your Google Cloud project.
+Enable the **Gmail API** for your Google Cloud project.
 
-Step 3 — Configure Google Auth Platform
+### Step 3 — Configure Google Auth Platform
 
-Configure the OAuth consent screen using Google Auth Platform.
+Configure the OAuth consent screen using **Google Auth Platform**.
 
 For a personal Gmail account, configure the application as an external application.
 
-Step 4 — Create OAuth Client
+### Step 4 — Create OAuth Client
 
 Create an OAuth 2.0 client with:
 
-Application Type: Desktop App
-Step 5 — Download Credentials
+    Application Type: Desktop App
+
+### Step 5 — Download Credentials
 
 Download the OAuth client JSON file and rename it:
 
-credentials.json
+    credentials.json
 
 Place the file inside:
 
-Attachment_Downloader/
-Step 6 — Add a Test User
+    Attachment_Downloader/
 
-If the application is in Testing mode, add the Gmail account that will be used to authenticate the application under:
+### Step 6 — Add a Test User
 
-Google Auth Platform → Audience → Test users
+If the application is in **Testing** mode, add the Gmail account that will be used to authenticate the application under:
 
-Never share your credentials.json file publicly.
+    Google Auth Platform → Audience → Test users
 
-▶️ Running the Application
+> Never share your `credentials.json` file publicly.
+
+---
+
+## ▶️ Running the Application
 
 Navigate to the application directory:
 
-cd Attachment_Downloader
+    cd Attachment_Downloader
 
 Run the application:
 
-python attachment.py
+    python attachment.py
 
 The application will ask for a search query:
 
-Enter search query:
+    Enter search query:
 
 Enter any Gmail search term.
 
 For example:
 
-invoice
+    invoice
 
 The program automatically adds:
 
-has:attachment
+    has:attachment
 
 to the search query.
 
 Therefore, the final Gmail search becomes:
 
-invoice has:attachment
+    invoice has:attachment
 
-🔎 Example Usage
-Enter search query: invoice
+---
 
-Result(s) with attachments:
+## 🔎 Example Usage
 
-Email Subject: Your Invoice
-Email Subject: Monthly Invoice
-Email Subject: Rapido Invoice
-Email Subject: Your Tickets
+    Enter search query: invoice
 
-Do you want to download attachment(s) in result(s) (Yes/No)?
+    Result(s) with attachments:
+
+    Email Subject: Your Invoice
+    Email Subject: Monthly Invoice
+    Email Subject: Rapido Invoice
+    Email Subject: Your Tickets
+
+    Do you want to download attachment(s) in result(s) (Yes/No)?
 
 Enter:
 
-Yes
+    Yes
 
 to download the attachments.
 
 Enter:
 
-No
+    No
 
 to exit without downloading.
 
-🔍 Gmail Search Queries
+---
+
+## 🔍 Gmail Search Queries
 
 Because the application uses Gmail search syntax, you can use different Gmail search operators.
 
-Search by sender
-from:example@gmail.com
-Search by subject
-subject:invoice
-Search for PDFs
-filename:pdf
-Search for a specific sender with invoices
-from:example@gmail.com invoice
+### Search by Sender
+
+    from:example@gmail.com
+
+### Search by Subject
+
+    subject:invoice
+
+### Search for PDF Files
+
+    filename:pdf
+
+### Search for a Specific Sender with Invoices
+
+    from:example@gmail.com invoice
 
 The application automatically adds:
 
-has:attachment
+    has:attachment
 
 to these queries.
 
-📥 How Attachments Are Downloaded
+---
+
+## 📥 How Attachments Are Downloaded
 
 The application:
 
-Accepts a Gmail search query.
-Adds the has:attachment filter.
-Searches Gmail for matching conversations.
-Displays the subjects of matching emails.
-Asks the user whether attachments should be downloaded.
-Downloads the attachments when the user confirms.
-🔒 Security
+1. Accepts a Gmail search query.
+2. Adds the `has:attachment` filter.
+3. Searches Gmail for matching conversations.
+4. Displays the subjects of matching emails.
+5. Asks the user whether attachments should be downloaded.
+6. Downloads the attachments when the user confirms.
+
+---
+
+## 🔒 Security
 
 Authentication files are intentionally excluded from this repository.
 
-The following files should never be uploaded to GitHub:
+The following files should **never be uploaded to GitHub**:
 
-credentials.json
-token.json
+    credentials.json
+    token.json
 
-They are excluded using .gitignore.
+They are excluded using `.gitignore`.
 
 Do not share OAuth credentials, tokens, or other authentication information publicly.
 
-🚨 Troubleshooting
-ModuleNotFoundError: No module named 'ezgmail'
+---
+
+## 🚨 Troubleshooting
+
+### `ModuleNotFoundError: No module named 'ezgmail'`
 
 Install EZGmail:
 
-pip install ezgmail
-Can't find credentials file
+    pip install ezgmail
+
+---
+
+### `Can't find credentials file`
 
 Make sure the file is named exactly:
 
-credentials.json
+    credentials.json
 
 and is located inside:
 
-Attachment_Downloader/
+    Attachment_Downloader/
 
 Make sure it is not accidentally named:
 
-credentials.json.json
-Access blocked: App has not completed verification
+    credentials.json.json
+
+---
+
+### `Access blocked: App has not completed verification`
 
 If the application is in Testing mode, make sure your Google account has been added under:
 
-Google Auth Platform → Audience → Test users
-Authentication
+    Google Auth Platform → Audience → Test users
+
+---
+
+### Authentication
 
 The first time the application is run, Google OAuth authentication will open in the browser.
 
 After successful authentication, a local:
 
-token.json
+    token.json
 
 file may be created automatically.
 
-🚀 Future Improvements
+---
 
-Planned improvements for future versions:
+## 🚀 Future Improvements
 
-🖥️ Add a graphical user interface
-📁 Allow users to choose a custom download directory
-📎 Display attachment names and file sizes
-☑️ Allow users to select individual emails
-☑️ Allow users to select specific attachments
-📊 Add download progress indicators
-⚡ Improve batch downloading
-🛑 Improve error handling
-🔎 Add advanced search filters
-📝 Add detailed logging
-🎯 Project Purpose
+Possible future improvements include:
+
+- 🖥️ Add a graphical user interface
+- 📁 Allow users to choose a custom download directory
+- 📎 Display attachment names and file sizes
+- ☑️ Allow users to select individual emails
+- ☑️ Allow users to select specific attachments
+- 📊 Add download progress indicators
+- ⚡ Improve batch downloading
+- 🛑 Improve error handling
+- 🔎 Add advanced search filters
+- 📝 Add detailed logging
+
+---
+
+## 🎯 Project Purpose
 
 The purpose of this project is to simplify the process of finding and downloading Gmail attachments.
 
 Instead of manually opening multiple emails and downloading files one by one, users can search their inbox using Gmail search queries and download attachments from the matching results.
 
-👨‍💻 Author
+---
 
-Hrishikesh Sharma
+## 👨‍💻 Author
 
-GitHub:
-https://github.com/RaavanHrishi07
+**Hrishikesh Sharma**
 
-⭐ Support
+GitHub: **RaavanHrishi07**
+
+---
+
+## ⭐ Support
 
 If you find this project useful, consider giving the repository a ⭐ on GitHub.
 
-📄 License
+---
+
+## 📄 License
 
 This project is intended for educational and personal use.
